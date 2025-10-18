@@ -101,10 +101,10 @@ Vamos esquecer `pip` e `requirements.txt` por um momento. O **Poetry** é uma fe
 
 4.  **Executando um Script:**
     -   Com o ambiente ativado (`poetry shell`), você pode executar seus scripts Python normalmente.
-    -   Por exemplo, para executar o script da próxima aula:
+    -   Por exemplo, para executar um script:
         ```bash
-        # Certifique-se de que o arquivo está na pasta correta, ex: aula01/exemplo_aula01.py
-        python aula01/exemplo_aula01.py
+        # Certifique-se de que o arquivo está na pasta correta
+        python aula00_introducao_python/aula00.py
         ```
 
 **Pronto!** Nosso ambiente está configurado de forma profissional. Na próxima aula, começaremos a fazer o web scraping de verdade.
