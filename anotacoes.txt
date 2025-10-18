@@ -1,0 +1,9 @@
+
+# Minicurso Web Scraping
+
+## Poetry
+
+poetry ini
+poetry shell
+
+code .

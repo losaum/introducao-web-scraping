@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "introducao-web-scraping"
+version = "0.1.0"
+description = ""
+authors = ["Thiago Berticelli Ló <losaum@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^2.3.3"
+openpyxl = "^3.1.5"
+requests = "^2.32.5"
+beautifulsoup4 = "^4.14.2"
+lxml = "^6.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
