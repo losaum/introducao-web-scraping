@@ -80,10 +80,9 @@ Vamos esquecer `pip` e `requirements.txt` por um momento. O **Poetry** é uma fe
     ```bash
     # 1. Crie um novo projeto com Poetry. Isso cria a estrutura de pastas.
     poetry new introducao-web-scraping
-    Ou, se quiser iniciar um psrojeto na pasta em que você já está.
+    # Ou, se quiser iniciar um psrojeto na pasta em que você já está.
     poetry init	
-    Inicia um projeto na pasta em que você já está.
-
+    
     # 2. Entre na pasta do projeto.
     cd introducao-web-scraping
 
@@ -109,3 +108,8 @@ Vamos esquecer `pip` e `requirements.txt` por um momento. O **Poetry** é uma fe
         ```
 
 **Pronto!** Nosso ambiente está configurado de forma profissional. Na próxima aula, começaremos a fazer o web scraping de verdade.
+
+** Se quiser, já pode abrir o VSCode com o interpretador atual com o comando:** 
+```bash
+    code .
+```
