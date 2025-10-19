@@ -58,9 +58,9 @@ Vamos criar nosso primeiro script para buscar o conteúdo HTML de uma página. U
       response = requests.get(URL, headers=HEADERS)
       ```
 2.  **Criando e Executando o Script**
-    -   **Crie o arquivo `exemplo_aula01.py`** na pasta `aula01`.
+    -   **Crie o arquivo `aula01_exemplo_01.py`** na pasta `aula01`.
 2.  **Escreva o código abaixo**.
-3.  **Execute o script** no terminal com o comando: `python exemplo_aula01.py`
+3.  **Execute o script** no terminal com o comando: `python aula01_exemplo_01.py`
 
 O script irá fazer uma requisição ao site e, se tudo der certo, salvará o conteúdo HTML completo em um arquivo chamado `pagina.html` dentro da pasta `aula01`. Abra este arquivo no seu navegador para ver que é uma cópia local da página!
 
