@@ -109,7 +109,7 @@ Vamos esquecer `pip` e `requirements.txt` por um momento. O **Poetry** é uma fe
 
 **Pronto!** Nosso ambiente está configurado de forma profissional. Na próxima aula, começaremos a fazer o web scraping de verdade.
 
-** Se quiser, já pode abrir o VSCode com o interpretador atual com o comando:** 
+**Se quiser, já pode abrir o VSCode com o interpretador atual com o comando:** 
 ```bash
     code .
 ```

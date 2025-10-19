@@ -12,6 +12,7 @@
 # - lxml: Uma das bibliotecas que o pandas pode usar para ler tabelas de HTML (já instalamos antes).
 
 import pandas as pd
+import requests
 import io
 import os
 
@@ -70,18 +71,43 @@ print("-" * 30)
 
 
 # --- 5. Lendo tabelas de uma página Web ---
-# O pandas pode ler tabelas diretamente de uma URL. Ele retorna uma lista de DataFrames.
 print("\n--- 5. Lendo tabela da Web ---")
 url_wiki = "https://pt.wikipedia.org/wiki/Lista_de_unidades_federativas_do_Brasil_por_popula%C3%A7%C3%A3o"
-try:
-    lista_de_dfs = pd.read_html(url_wiki, attrs={"class": "wikitable"})
-    print(f"Encontradas {len(lista_de_dfs)} tabelas na página.")
-    df_populacao = lista_de_dfs[0]  # Pegamos a primeira tabela encontrada
 
-    print("\nCabeçalho da tabela de população do Brasil:")
+# 1. Criamos um cabeçalho (header) que simula um acesso via navegador Chrome
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+}
+
+try:
+    # 2. Fazemos a requisição usando a biblioteca requests com o nosso 'disfarce'
+    print("Fazendo requisição para a URL com headers...")
+    response = requests.get(url_wiki, headers=headers)
+    
+    # Isso vai gerar um erro se a página não for encontrada ou se o acesso for bloqueado
+    response.raise_for_status()
+    print("Página baixada com sucesso!")
+
+    # 3. Agora, entregamos o CONTEÚDO HTML baixado para o pandas ler
+    # Usamos o 'match' para garantir que pegamos a tabela certa
+    lista_de_dfs = pd.read_html(response.text, match="População")
+    
+    print(f"Encontrada {len(lista_de_dfs)} tabela(s) no HTML com a palavra 'População'.")
+    
+    df_populacao = lista_de_dfs[0]
+    
+    print("\n--- Tabela encontrada com sucesso! ---")
     print(df_populacao.head())
+
+# Capturando erros de forma mais específica
+except requests.exceptions.RequestException as e:
+    print(f"ERRO DE CONEXÃO: Não foi possível baixar a página. Erro: {e}")
+except ValueError as e:
+    print(f"ERRO DO PANDAS: A tabela com o texto 'População' não foi encontrada no HTML. O site pode ter mudado. Erro: {e}")
+except IndexError:
+    print("ERRO DE ÍNDICE: O pandas não retornou nenhuma tabela. Verifique o HTML da página.")
 except Exception as e:
-    print(f"Não foi possível ler a tabela da web. Erro: {e}")
+    print(f"Ocorreu um erro inesperado: {e}")
 print("-" * 30)
 
 
@@ -99,9 +125,9 @@ caminho_excel = os.path.join(output_dir, "populacao_brasil.xlsx")
 
 # Salvando em CSV
 # index=False evita que o índice do DataFrame seja salvo como uma coluna no arquivo
-df_populacao.to_csv(caminho_csv, index=False, encoding="utf-8")
+df_populacao.to_csv(caminho_csv, encoding="utf-8")
 print(f"DataFrame salvo em CSV: {caminho_csv}")
 
 # Salvando em Excel (requer a biblioteca openpyxl)
-df_populacao.to_excel(caminho_excel, index=False, sheet_name="População")
+df_populacao.to_excel(caminho_excel, sheet_name="População")
 print(f"DataFrame salvo em Excel: {caminho_excel}")
